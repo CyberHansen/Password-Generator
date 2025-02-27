@@ -26,7 +26,25 @@ namespace Random_Password_Generator
             string password = new string(Enumerable.Repeat(chars, length)
                 .Select(s => s[random.Next(s.Length)]).ToArray());
 
-            labelPassword.Text = $"Generated Password: {password}";
+            labelPassword.Text = $"{password}";
+            
+        }
+        private void labelPassword_Click_1(object sender, EventArgs e)
+        {
+            Clipboard.SetText(labelPassword.Text);
+            MessageBox.Show("Password copied to clipboard!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void labelPassword_MouseEnter_1(object sender, EventArgs e)
+        {
+            labelPassword.ForeColor = System.Drawing.Color.Blue;  // Change text color
+            labelPassword.Font = new System.Drawing.Font(labelPassword.Font, System.Drawing.FontStyle.Underline);
+        }
+
+        private void labelPassword_MouseLeave(object sender, EventArgs e)
+        {
+            labelPassword.ForeColor = System.Drawing.Color.Black;  // Reset text color
+            labelPassword.Font = new System.Drawing.Font(labelPassword.Font, System.Drawing.FontStyle.Regular); // Remove underline
         }
     }
 }
